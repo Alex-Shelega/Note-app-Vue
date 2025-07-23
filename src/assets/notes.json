@@ -1,0 +1,43 @@
+[
+    {
+      "title": "Budget Follow-up",
+      "note": "Remember to email Sarah about the budget update."
+    },
+    {
+      "title": "Theme Idea",
+      "note": "Possible theme: 'Time as a loop'? Could be too abstract."
+    },
+    {
+      "title": "App Feature Check",
+      "note": "Check if the app can handle offline mode."
+    },
+    {
+      "title": "Landing Page",
+      "note": "Add testimonials to landing page — maybe 3 max?"
+    },
+    {
+      "title": "Onboarding Concept",
+      "note": "Sketch out initial concept for onboarding flow."
+    },
+    {
+      "title": "File Storage Alternatives",
+      "note": "Look into other options for file storage — S3 too expensive?"
+    },
+    {
+      "title": "Design Meeting",
+      "note": "Meeting with design team Thurs @ 2pm — confirm."
+    },
+    {
+      "title": "Feature Priority",
+      "note": "Is dark mode really a priority right now?"
+    },
+    {
+      "title": "User Flow Optimization",
+      "note": "Maybe combine steps 2 and 3 in the user journey."
+    },
+    {
+      "title": "API Limits",
+      "note": "What’s our backup plan if API limits get hit?"
+    }
+  ]
+  
