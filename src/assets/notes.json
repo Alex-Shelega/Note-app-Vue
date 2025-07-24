@@ -1,81 +1,101 @@
 [
   {
+    "id": 1,
     "title": "Budget Follow-up",
     "note": "Remember to email Sarah about the budget update."
   },
   {
+    "id": 2,
     "title": "Theme Idea",
     "note": "Possible theme: 'Time as a loop'? Could be too abstract."
   },
   {
+    "id": 3,
     "title": "App Feature Check",
     "note": "Check if the app can handle offline mode."
   },
   {
+    "id": 4,
     "title": "Landing Page",
     "note": "Add testimonials to landing page — maybe 3 max?"
   },
   {
+    "id": 5,
     "title": "Onboarding Concept",
     "note": "Sketch out initial concept for onboarding flow."
   },
   {
+    "id": 6,
     "title": "File Storage Alternatives",
     "note": "Look into other options for file storage — S3 too expensive?"
   },
   {
+    "id": 7,
     "title": "Design Meeting",
     "note": "Meeting with design team Thurs @ 2pm — confirm."
   },
   {
+    "id": 8,
     "title": "Feature Priority",
     "note": "Is dark mode really a priority right now?"
   },
   {
+    "id": 9,
     "title": "User Flow Optimization",
     "note": "Maybe combine steps 2 and 3 in the user journey."
   },
   {
+    "id": 10,
     "title": "API Limits",
     "note": "What’s our backup plan if API limits get hit?"
   },
   {
+    "id": 11,
     "title": "Database Scaling",
     "note": "We should plan for scaling our database soon."
   },
   {
+    "id": 12,
     "title": "Client Feedback",
     "note": "Request feedback from clients on new UI design."
   },
   {
+    "id": 13,
     "title": "Server Maintenance",
     "note": "Schedule downtime for server maintenance next weekend."
   },
   {
+    "id": 14,
     "title": "Marketing Strategy",
     "note": "Create new social media campaign for product launch."
   },
   {
+    "id": 15,
     "title": "App Performance",
     "note": "Test app performance on lower-end devices."
   },
   {
+    "id": 16,
     "title": "Code Review",
     "note": "Schedule a code review for the new feature branch."
   },
   {
+    "id": 17,
     "title": "User Authentication",
     "note": "Review and improve the user authentication flow."
   },
   {
+    "id": 18,
     "title": "Security Update",
     "note": "Apply the latest security patches to the backend."
   },
   {
+    "id": 19,
     "title": "Customer Support",
     "note": "Respond to user inquiries about the latest update."
   },
   {
+    "id": 20,
     "title": "Product Roadmap",
     "note": "Review and update the product roadmap for Q4."
   }
