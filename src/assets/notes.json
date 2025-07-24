@@ -1,43 +1,82 @@
 [
-    {
-      "title": "Budget Follow-up",
-      "note": "Remember to email Sarah about the budget update."
-    },
-    {
-      "title": "Theme Idea",
-      "note": "Possible theme: 'Time as a loop'? Could be too abstract."
-    },
-    {
-      "title": "App Feature Check",
-      "note": "Check if the app can handle offline mode."
-    },
-    {
-      "title": "Landing Page",
-      "note": "Add testimonials to landing page — maybe 3 max?"
-    },
-    {
-      "title": "Onboarding Concept",
-      "note": "Sketch out initial concept for onboarding flow."
-    },
-    {
-      "title": "File Storage Alternatives",
-      "note": "Look into other options for file storage — S3 too expensive?"
-    },
-    {
-      "title": "Design Meeting",
-      "note": "Meeting with design team Thurs @ 2pm — confirm."
-    },
-    {
-      "title": "Feature Priority",
-      "note": "Is dark mode really a priority right now?"
-    },
-    {
-      "title": "User Flow Optimization",
-      "note": "Maybe combine steps 2 and 3 in the user journey."
-    },
-    {
-      "title": "API Limits",
-      "note": "What’s our backup plan if API limits get hit?"
-    }
-  ]
-  
+  {
+    "title": "Budget Follow-up",
+    "note": "Remember to email Sarah about the budget update."
+  },
+  {
+    "title": "Theme Idea",
+    "note": "Possible theme: 'Time as a loop'? Could be too abstract."
+  },
+  {
+    "title": "App Feature Check",
+    "note": "Check if the app can handle offline mode."
+  },
+  {
+    "title": "Landing Page",
+    "note": "Add testimonials to landing page — maybe 3 max?"
+  },
+  {
+    "title": "Onboarding Concept",
+    "note": "Sketch out initial concept for onboarding flow."
+  },
+  {
+    "title": "File Storage Alternatives",
+    "note": "Look into other options for file storage — S3 too expensive?"
+  },
+  {
+    "title": "Design Meeting",
+    "note": "Meeting with design team Thurs @ 2pm — confirm."
+  },
+  {
+    "title": "Feature Priority",
+    "note": "Is dark mode really a priority right now?"
+  },
+  {
+    "title": "User Flow Optimization",
+    "note": "Maybe combine steps 2 and 3 in the user journey."
+  },
+  {
+    "title": "API Limits",
+    "note": "What’s our backup plan if API limits get hit?"
+  },
+  {
+    "title": "Database Scaling",
+    "note": "We should plan for scaling our database soon."
+  },
+  {
+    "title": "Client Feedback",
+    "note": "Request feedback from clients on new UI design."
+  },
+  {
+    "title": "Server Maintenance",
+    "note": "Schedule downtime for server maintenance next weekend."
+  },
+  {
+    "title": "Marketing Strategy",
+    "note": "Create new social media campaign for product launch."
+  },
+  {
+    "title": "App Performance",
+    "note": "Test app performance on lower-end devices."
+  },
+  {
+    "title": "Code Review",
+    "note": "Schedule a code review for the new feature branch."
+  },
+  {
+    "title": "User Authentication",
+    "note": "Review and improve the user authentication flow."
+  },
+  {
+    "title": "Security Update",
+    "note": "Apply the latest security patches to the backend."
+  },
+  {
+    "title": "Customer Support",
+    "note": "Respond to user inquiries about the latest update."
+  },
+  {
+    "title": "Product Roadmap",
+    "note": "Review and update the product roadmap for Q4."
+  }
+]

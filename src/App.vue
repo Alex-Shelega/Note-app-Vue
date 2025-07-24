@@ -16,13 +16,6 @@ import { reactive } from 'vue';
 import notes from './assets/notes.json' with { type: 'json' };
 
 console.log(notes)
-
-const data = reactive({})
-data.number = 0
-
-function increment() {
-  data.number++
-}
 </script>
 
 <style scoped>
@@ -40,7 +33,6 @@ button {
   flex-direction: column;
   justify-content: center; /* vertically center content */
   height: 80px; /* enough to fit title + note nicely */
-  overflow: hidden;
   text-align: left;
 }
 
@@ -80,6 +72,11 @@ textarea{
 
 #noteview, #noteedit{
   margin: 10px;
+}
+
+#noteview{
+  height: 80vh;
+  overflow: auto;
 }
 
 input:focus, textarea:focus {
