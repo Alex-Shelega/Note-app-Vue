@@ -22,7 +22,6 @@ data.number = 0
 
 function increment() {
   data.number++
-  data.smth = 'smth'
 }
 </script>
 
