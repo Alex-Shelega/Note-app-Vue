@@ -1,11 +1,23 @@
 <template>
-  <div id="noteview">
-    <input type="text" placeholder="Search">
-    <button v-for="note in data.notes" :key="note.id" @click="select(note.id)">
-      <h2>{{ note.title }}</h2>
-      <p>{{ note.note }}</p>
-    </button>
+<div id="noteview">
+  <div id="search-wrapper">
+    <input
+      id="search"
+      type="text"
+      placeholder="Search..."
+      v-model="searchTerm"
+    />
+    <button id="new-note" @click="clearSelection" title="New Note">+</button>
   </div>
+  <button
+    v-for="note in filteredNotes"
+    :key="note.id"
+    @click="select(note.id)"
+  >
+    <h2>{{ note.title }}</h2>
+    <p>{{ note.note }}</p>
+  </button>
+</div>
   <div id="noteedit">
     <input type="text" placeholder="Title" v-model="data.title"/>
     <textarea name="" id="" cols="30" rows="10" placeholder="Type anytyhing" v-model="data.body"></textarea>
@@ -17,29 +29,58 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
-import notes from './assets/notes.json' with { type: 'json' };
+import { reactive, ref, computed } from 'vue'
+import notes from './assets/notes.json' with { type: 'json' }
 
-console.log(notes)
+const data = reactive({
+  notes,
+  title: '',
+  body: '',
+  id: null
+})
 
-const data = reactive({});
+const searchTerm = ref('')
 
-data.notes = notes
+const filteredNotes = computed(() => {
+  const term = searchTerm.value.trim().toLowerCase()
+  if (!term) return data.notes
+  return data.notes.filter(note =>
+    note.title.toLowerCase().includes(term) ||
+    note.note.toLowerCase().includes(term)
+  )
+})
 
-function select(n){
-  data.title = data.notes.find(note => note.id === n).title
-  data.body = data.notes.find(note => note.id === n).note
+function select(n) {
+  const note = data.notes.find(note => note.id === n)
+  if (!note) return
+  data.title = note.title
+  data.body = note.note
   data.id = n
 }
 
 function save(n){
-  data.notes.find(note => note.id === n).title = data.title;
-  data.notes.find(note => note.id === n).note = data.body
+  if(data.notes.find(note => note.id === n) === undefined){
+    if((data.title?.trim() || '') === '' && (data.body?.trim() || '') === ''){
+      alert('Write some notes first!!!')
+    } else{
+      data.notes.unshift({id: Date.now(), title: data.title, note: data.body});
+      clearSelection();
+    }
+  }
+ else { data.notes.find(note => note.id === n).title = data.title;
+  data.notes.find(note => note.id === n).note = data.body;}
 }
 
 function del(n){
   let index = data.notes.findIndex((val) => val.id === n);
-  index !== -1 && data.notes.splice(index,1)
+  index !== -1 && data.notes.splice(index,1);
+  clearSelection()
+}
+
+function clearSelection() {
+  data.title = ''
+  data.body = ''
+  data.id = null
 }
 </script>
 
@@ -123,14 +164,63 @@ input:focus, textarea:focus {
 }
 
 #save{
-  background-color: green;
+  background-color: rgb(160, 255, 160);
+  border: 2px, solid, green;
+  font-size: 150%;
+  color: green;
 }
 
 #delete{
-  background-color: red;
+  background-color: rgb(255, 177, 177);
+  border: 2px, solid, red;
+  font-size: 150%;
+  color: red;
 }
 
-#noteview input{
-  all: unset;
+#search-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#search {
+  flex-grow: 1;
+  width: auto; /* override fixed width to fill container */
+  padding: 8px 14px;
+  font-size: 1rem;
+  border: 2px solid #bbb;
+  border-radius: 25px 0 0 25px; /* rounded left corners */
+  box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background: url("data:image/svg+xml,%3csvg fill='gray' height='16' viewBox='0 0 24 24' width='16' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M15.5 14h-.79l-.28-.27a6.471 6.471 0 001.48-5.34C15.19 5.59 12.4 3 9 3S2.81 5.59 2.81 8.39c0 2.8 2.79 5.39 6.19 5.39a6.471 6.471 0 005.34-1.48l.27.28v.79l4.99 5L20.49 19l-5-5zM9 13c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z'/%3e%3c/svg%3e") no-repeat right 10px center / 16px 16px;
+}
+
+#search:focus {
+  border-color: #4A90E2;
+  box-shadow: 0 0 10px rgba(74, 144, 226, 0.7);
+  outline: none;
+  background-color: #f9fbff;
+}
+
+/* New Note button style */
+#new-note {
+  width: auto !important;
+  padding: 0 14px;
+  background-color: #4A90E2;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+  border: 2px solid #4A90E2;
+  border-left: none;
+  border-radius: 0 25px 25px 0; /* rounded right corners */
+  padding: 0 14px;
+  height: 36px; /* match input height */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#new-note:hover {
+  background-color: #357ABD;
+  border-color: #357ABD;
 }
 </style>
