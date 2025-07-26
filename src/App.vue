@@ -29,18 +29,23 @@
 </template>
 
 <script setup>
-import { reactive, ref, computed } from 'vue'
-import notes from './assets/notes.json' with { type: 'json' }
+import { reactive, ref, computed, watch, onMounted } from 'vue'
+import defaultNotes from './assets/notes.json' with { type: 'json' }
 
+const LOCAL_STORAGE_KEY = 'vibe-notes'
+
+// Main reactive data
 const data = reactive({
-  notes,
+  notes: [],
   title: '',
   body: '',
   id: null
 })
 
+// Search input
 const searchTerm = ref('')
 
+// Filter notes based on search term
 const filteredNotes = computed(() => {
   const term = searchTerm.value.trim().toLowerCase()
   if (!term) return data.notes
@@ -50,33 +55,75 @@ const filteredNotes = computed(() => {
   )
 })
 
-function select(n) {
-  const note = data.notes.find(note => note.id === n)
+// Load notes on mount
+onMounted(() => {
+  const saved = localStorage.getItem(LOCAL_STORAGE_KEY)
+  if (saved) {
+    try {
+      data.notes = JSON.parse(saved)
+    } catch (e) {
+      console.warn('Could not parse saved notes. Using default.')
+      data.notes = defaultNotes
+    }
+  } else {
+    data.notes = defaultNotes
+  }
+})
+
+// Auto-save notes to localStorage on change
+watch(
+  () => data.notes,
+  (newNotes) => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newNotes))
+  },
+  { deep: true }
+)
+
+// Select a note
+function select(id) {
+  const note = data.notes.find(note => note.id === id)
   if (!note) return
   data.title = note.title
   data.body = note.note
-  data.id = n
+  data.id = id
 }
 
-function save(n){
-  if(data.notes.find(note => note.id === n) === undefined){
-    if((data.title?.trim() || '') === '' && (data.body?.trim() || '') === ''){
-      alert('Write some notes first!!!')
-    } else{
-      data.notes.unshift({id: Date.now(), title: data.title, note: data.body});
-      clearSelection();
-    }
+// Save or update a note
+function save(id) {
+  const trimmedTitle = data.title?.trim() || ''
+  const trimmedBody = data.body?.trim() || ''
+
+  if (!trimmedTitle && !trimmedBody) {
+    alert('Write some notes first!!!')
+    return
   }
- else { data.notes.find(note => note.id === n).title = data.title;
-  data.notes.find(note => note.id === n).note = data.body;}
-}
 
-function del(n){
-  let index = data.notes.findIndex((val) => val.id === n);
-  index !== -1 && data.notes.splice(index,1);
+  const existingNote = data.notes.find(note => note.id === id)
+
+  if (existingNote) {
+    existingNote.title = trimmedTitle
+    existingNote.note = trimmedBody
+  } else {
+    data.notes.unshift({
+      id: Date.now(),
+      title: trimmedTitle,
+      note: trimmedBody
+    })
+  }
+
   clearSelection()
 }
 
+// Delete a note
+function del(id) {
+  const index = data.notes.findIndex(note => note.id === id)
+  if (index !== -1) {
+    data.notes.splice(index, 1)
+    clearSelection()
+  }
+}
+
+// Clear input fields
 function clearSelection() {
   data.title = ''
   data.body = ''
